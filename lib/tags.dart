@@ -19,31 +19,31 @@ class Metadata {
     this.dateTimeOriginal,
   });
 
-  final double altitude;
-  final double altitudeRef;
-  final double latitude;
-  final double longitude;
-  final String userComment;
-  final DateTime dateTimeOriginal;
+  final double? altitude;
+  final double? altitudeRef;
+  final double? latitude;
+  final double? longitude;
+  final String? userComment;
+  final DateTime? dateTimeOriginal;
 
   Map<String, String> getLatitude() {
     return {
-      MetadataTag.latitude: latitude.abs().toString(),
-      MetadataTag.latitudeRef: getLatitudeRef(latitude),
+      MetadataTag.latitude: latitude!.abs().toString(),
+      MetadataTag.latitudeRef: getLatitudeRef(latitude!),
     };
   }
 
   Map<String, String> getLongitude() {
     return {
-      MetadataTag.longitude: longitude.abs().toString(),
-      MetadataTag.longitudeRef: getLongitudeRef(longitude),
+      MetadataTag.longitude: longitude!.abs().toString(),
+      MetadataTag.longitudeRef: getLongitudeRef(longitude!),
     };
   }
 
   Map<String, String> getAltitude() {
     return {
-      MetadataTag.altitude: altitude.abs().toString(),
-      MetadataTag.altitudeRef: altitudeRef ?? getAltitudeRef(altitude),
+      MetadataTag.altitude: altitude!.abs().toString(),
+      MetadataTag.altitudeRef: altitudeRef as String? ?? getAltitudeRef(altitude!),
     };
   }
 
@@ -53,21 +53,21 @@ class Metadata {
       return value > 9 ? value.toString() : '0$value';
     };
 
-    final year = dateTimeOriginal.year;
-    final month = addZero(dateTimeOriginal.month);
-    final day = addZero(dateTimeOriginal.day);
+    final year = dateTimeOriginal!.year;
+    final month = addZero(dateTimeOriginal!.month);
+    final day = addZero(dateTimeOriginal!.day);
 
-    final hour = addZero(dateTimeOriginal.hour);
-    final minute = addZero(dateTimeOriginal.minute);
-    final second = addZero(dateTimeOriginal.second);
+    final hour = addZero(dateTimeOriginal!.hour);
+    final minute = addZero(dateTimeOriginal!.minute);
+    final second = addZero(dateTimeOriginal!.second);
 
     return {
       MetadataTag.dateTimeOriginal: '$year:$month:$day $hour:$minute:$second'
     };
   }
 
-  Map<String, String> toNative() {
-    Map<String, String> response = {};
+  Map<String, String?> toNative() {
+    Map<String, String?> response = {};
 
     if (latitude != null) response.addAll(getLatitude());
     if (longitude != null) response.addAll(getLongitude());
