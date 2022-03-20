@@ -77,7 +77,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Example App'),
         ),
         body: Center(
-            child: RaisedButton(
+            child: ElevatedButton(
           onPressed: getMetadata,
           child: Text("Get Image"),
         )),
